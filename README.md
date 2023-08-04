@@ -1,4 +1,4 @@
-# CSE-3902-Project
+# The Legend of Zelda Remake
 
 * Game: The Legend of Zelda
 * Current Sprint: Sprint 5
