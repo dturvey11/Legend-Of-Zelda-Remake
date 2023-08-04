@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!--use TARGET, SOURCE, and DIRECTION or primative types as arguments for command constructors -->
+
+<!-- TARGET is the object curretly being checked for collisions (first layer). SOURCE is the object it detects (second layer)-->
+
+<!-- Type names must be fully qualified! (including the namespace!) (note: primitive type names are not the same as their keywords.) -->
+
+<!-- Mirrored responses (Player->Enemy vs. Enemy->Player) only require one defined response! -->
+
+<collision_response>
+  <Player>
+    <Enemy>
+      <command type="Project1.Commands.PlayerTakeDamageCommand">
+        <arg type="Project1.Player">TARGET</arg>
+      </command>
+      <command type="Project1.Commands.PlayerKnockBackCommand">
+        <arg type="Project1.Player">TARGET</arg>
+        <arg type="Project1.Collision">COLLISION</arg>
+      </command>
+    </Enemy>
+    <Block>
+      <command type="Project1.Commands.MoveInBoundsCommand">
+        <arg type="Project1.Collision">COLLISION</arg>
+      </command>
+    </Block>
+    <Door>
+      <command type="Project1.Commands.MoveToNextRoomCommand">
+        <arg type="Project1.Player">TARGET</arg>
+        <arg type="Project1.Interfaces.IExit">SOURCE</arg>
+      </command>
+    </Door>
+	<Portal>
+      <command type="Project1.Commands.MoveDownStairsCommand">
+        <arg type="Project1.Interfaces.IPortal">SOURCE</arg>
+      </command>
+    </Portal>
+    <Item>
+      <command type="Project1.Commands.PlayerCollectItemCommand">
+        <arg type="Project1.Collision">COLLISION</arg>
+      </command>
+    </Item>
+	  <Rupee>
+		  <command type="Project1.Commands.PlayerCollectRupeeCommand">
+			  <arg type="Project1.Collision">COLLISION</arg>
+		  </command>
+	  </Rupee>
+	  <InstantUseItem>
+		  <command type="Project1.Commands.PlayerCollectInstantUseItemCommand">
+			  <arg type="Project1.Collision">COLLISION</arg>
+		  </command>
+	  </InstantUseItem>
+    <Weapon>
+      
+    </Weapon>
+    <Projectile>
+      <command type="Project1.Commands.PlayerTakeDamageCommand">
+        <arg type="Project1.Player">TARGET</arg>
+        <arg type="Project1.Interfaces.IProjectile">SOURCE</arg>
+      </command>
+      <command type="Project1.Commands.DeleteGameObjectCommand">
+        <arg type="Project1.Interfaces.IGameObject">SOURCE</arg>
+      </command>
+    </Projectile>
+    <Boomerang>
+      <command type="Project1.Commands.PlayerTakeDamageCommand">
+        <arg type="Project1.Player">TARGET</arg>
+        <arg type="Project1.Interfaces.IProjectile">SOURCE</arg>
+      </command>
+    </Boomerang>
+    <PickUp>
+      <command type="Project1.Commands.PickUpCommand">
+        <arg type="Project1.Collision">COLLISION</arg>
+      </command>
+    </PickUp>
+    <Water>
+      <command type="Project1.Commands.MoveInBoundsCommand">
+        <arg type="Project1.Collision">COLLISION</arg>
+      </command>
+    </Water>
+    <Explosion>
+      <command type="Project1.Commands.PlayerTakeDamageCommand">
+        <arg type="Project1.Player">TARGET</arg>
+      </command>
+    </Explosion>
+    <LockedDoor>
+      <command type="Project1.Commands.UnlockDoorCommand">
+        <arg type="Project1.Objects.LockedDoor">SOURCE</arg>
+      </command>
+    </LockedDoor>
+  </Player>
+
+  <DamagedPlayer>
+    <Block>
+      <command type="Project1.Commands.MoveInBoundsCommand">
+        <arg type="Project1.Collision">COLLISION</arg>
+      </command>
+    </Block>
+    <Water>
+      <command type="Project1.Commands.MoveInBoundsCommand">
+        <arg type="Project1.Collision">COLLISION</arg>
+      </command>
+    </Water>
+    <Item>
+      <command type="Project1.Commands.PlayerCollectItemCommand">
+        <arg type="Project1.Collision">COLLISION</arg>
+      </command>
+    </Item>
+  </DamagedPlayer>
+
+  <Enemy>
+    <Weapon>
+      <command type="Project1.Commands.EnemyTakeDamageCommand">
+        <arg type="Project1.Enemy.IEnemy">TARGET</arg>
+      </command>
+    </Weapon>
+    <Block>
+      <command type="Project1.Commands.MoveInBoundsCommand">
+        <arg type="Project1.Collision">COLLISION</arg>
+      </command>
+    </Block>
+    <Water>
+      <command type="Project1.Commands.MoveInBoundsCommand">
+        <arg type="Project1.Collision">COLLISION</arg>
+      </command>
+    </Water>
+    <Item>
+      <command type="Project1.Commands.MoveInBoundsCommand">
+        <arg type="Project1.Collision">COLLISION</arg>
+      </command>
+    </Item>
+    <Projectile>
+      <command type="Project1.Commands.EnemyTakeDamageCommand">
+        <arg type="Project1.Enemy.IEnemy">TARGET</arg>
+        <arg type="Project1.Interfaces.IProjectile">SOURCE</arg>
+      </command>
+      <command type="Project1.Commands.DeleteProjectileByOwnerCommand">
+        <arg type="Project1.Interfaces.IProjectile">SOURCE</arg>
+      </command>
+    </Projectile>
+    <Boomerang>
+      <command type="Project1.Commands.EnemyTakeDamageCommand">
+        <arg type="Project1.Enemy.IEnemy">TARGET</arg>
+        <arg type="Project1.Interfaces.IProjectile">SOURCE</arg>
+      </command>
+    </Boomerang>
+    <Explosion>
+      <command type="Project1.Commands.EnemyTakeDamageCommand">
+        <arg type="Project1.Enemy.IEnemy">TARGET</arg>
+      </command>
+    </Explosion>
+  </Enemy>
+
+  <Weapon>
+    <Enemy>
+      <command type="Project1.Commands.EnemyTakeDamageCommand">
+        <arg type="Project1.Enemy.IEnemy">SOURCE</arg>
+      </command>
+    </Enemy>
+    <Player>
+    </Player>
+    <Block>
+      
+    </Block>
+  </Weapon>
+
+  <Projectile>
+    <Block>
+      <command type="Project1.Commands.DeleteGameObjectCommand">
+        <arg type="Project1.Interfaces.IGameObject">TARGET</arg>
+      </command>
+    </Block>
+    <Item>
+      
+    </Item>
+  </Projectile>
+
+  <Boomerang>
+    <Enemy>
+
+    </Enemy>
+
+  </Boomerang>
+
+  <MoveableBlock>
+	<Block>
+	    <command type="Project1.Commands.MoveInBoundsCommand">
+		    <arg type="Project1.Collision">COLLISION</arg>
+		</command>
+	</Block>
+	<Player>
+		<command type="Project1.Commands.MoveInBoundsCommand">
+			<arg type="Project1.Collision">COLLISION</arg>
+		</command>
+	</Player>
+  </MoveableBlock>
+</collision_response>
+<!-- Team JellyLake Autumn 2021 -->
