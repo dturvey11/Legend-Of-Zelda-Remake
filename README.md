@@ -70,8 +70,6 @@ Zheyuan Gao (gao.1600)<br />
 Devin Turvey (turvey.6)<br />
 
 
-## Team Member Assignment
-<a href="https://github.com/ThasianX/CSE-3902-Project/projects/4"><strong>Detailed work assignment can be seen here »</strong></a>
 
 ## Unique Features
 
